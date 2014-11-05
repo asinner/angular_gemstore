@@ -2,6 +2,8 @@
 ### Description
 This application is a small store that lists descriptions, specs, and reviews for different products (gems). You can add reviews under the review tab, and watch a live preview of it. This application utilizes Rails and Angular and is an application based off of the 'Shaping Up With Angular' course found on Code School.
 
+(Production app can be found here)[https://guarded-shelf-9201.herokuapp.com/]
+
 ### Implementation
 ------
 The first step in translating the Code School course into a Rails application was getting Angular required.
@@ -54,4 +56,6 @@ After this, createing a gemstore_app directory in app/javascripts/ and placing i
 The next step was to move all of the templates & images into the public folder, and reflect the change inside the store_controller.js.
 
 The file step involved copying over the index.html `<body>` into the show.html.
+	
+
 
