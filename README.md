@@ -2,7 +2,7 @@
 ### Description
 This application is a small store that lists descriptions, specs, and reviews for different products (gems). You can add reviews under the review tab, and watch a live preview of it. This application utilizes Rails and Angular and is an application based off of the 'Shaping Up With Angular' course found on Code School.
 
-(Production app can be found here)[https://guarded-shelf-9201.herokuapp.com/]
+[Production app can be found here](https://guarded-shelf-9201.herokuapp.com/)
 
 ### Implementation
 ------
