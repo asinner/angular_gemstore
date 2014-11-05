@@ -1,0 +1,21 @@
+{
+  "name": "rails_gemstore",
+  "version": "0.0.0",
+  "homepage": "https://github.com/asinner/angular_gemstore",
+  "authors": [
+    "Andrew Sinner <andrewsinner@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.1",
+    "bootstrap": "~3.3.0"
+  }
+}
