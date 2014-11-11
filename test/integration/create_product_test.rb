@@ -1,23 +1,46 @@
 require 'test_helper'
 
-class ListingProductsTest < ActionDispatch::IntegrationTest
-  setup do
-    Product.create!(
-      name: 'Halifax',
-      description: 'A canadian gem',
-      shine: 13,
-      price: 1_344.00,
-      rarity: 143,
-      color: '#CCC',
-      faces:  14
-    )
+class CreateProductTest < ActionDispatch::IntegrationTest
+  test "creates new product with valid data" do    
+    post "/products", { product: { 
+      name: 'Something',
+      description: 'A product!',
+      shine: 100,
+      price: 1234.23,
+      rarity: 432,
+      color: '#FFF',
+      faces: 13
+    } }.to_json, {
+      'Accept' => 'application/json',
+      'Content-Type' => 'application/json'
+    }
+        
+    assert_equal 201, response.status
+    assert_equal Mime::JSON, response.content_type
+    product = json(response.body)
+    assert_equal product_url(product[:id]), response.location
+    assert_equal 'Something', product[:name]
+    assert_equal 'A product!', product[:description]
+    assert_equal 100, product[:shine]
+    assert_equal '1234.23', product[:price]
   end
   
-  test "listing products" do
-    get '/products'
-    
-    assert_equal 200, response.status
+  test "creates new product with invalid data" do    
+    post "/products", { product: { 
+      name: nil,
+      description: 'A product!',
+      shine: 100,
+      price: 1234.23,
+      rarity: 432,
+      color: '#FFF',
+      faces: 13
+    } }.to_json, {
+      'Accept' => 'application/json',
+      'Content-Type' => 'application/json'
+    }
+        
+    assert_equal 422, response.status
     assert_equal Mime::JSON, response.content_type
-    assert_equal Product.count, JSON.parse(response.body).size
   end
+  
 end
