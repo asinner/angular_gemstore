@@ -9,7 +9,8 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       price: 1234.23,
       rarity: 432,
       color: '#FFF',
-      faces: 13
+      faces: 13,
+      category_id: 1
     } }.to_json, {
       'Accept' => 'application/json',
       'Content-Type' => 'application/json'
@@ -23,6 +24,7 @@ class CreateProductTest < ActionDispatch::IntegrationTest
     assert_equal 'A product!', product[:description]
     assert_equal 100, product[:shine]
     assert_equal '1234.23', product[:price]
+    assert_equal 1, product[:category_id]
   end
   
   test "creates new product with invalid data" do    
@@ -33,7 +35,8 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       price: 1234.23,
       rarity: 432,
       color: '#FFF',
-      faces: 13
+      faces: 13,
+      category_id: 1
     } }.to_json, {
       'Accept' => 'application/json',
       'Content-Type' => 'application/json'

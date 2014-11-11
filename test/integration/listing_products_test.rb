@@ -9,7 +9,8 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       price: 1_344.00,
       rarity: 143,
       color: '#CCC',
-      faces:  14
+      faces:  14,
+      category_id: 1
     )
     
     Product.create!(
@@ -19,7 +20,8 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       price: 2_344.00,
       rarity: 1100,
       color: '#EEE',
-      faces:  7
+      faces:  7,
+      category_id: 1
     )
   end
   
