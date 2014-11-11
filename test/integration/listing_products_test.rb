@@ -4,7 +4,7 @@ class CreateProductTest < ActionDispatch::IntegrationTest
   setup do
     @fossils = Category.create!(name: 'Fossils')
     @stones = Category.create!(name: 'Stones')
-    
+
     @fossils.products.create!(
       name: 'Halifax',
       description: 'A canadian gem',
@@ -14,7 +14,7 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       color: '#CCC',
       faces:  14
     )
-    
+
     @fossils.products.create!(
       name: 'Scotia',
       description: 'A scottish gem',
@@ -25,8 +25,8 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       faces:  7
     )
   end
-  
-  test "listing products" do
+
+  test 'listing products' do
     get '/api/products'
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
@@ -35,10 +35,10 @@ class CreateProductTest < ActionDispatch::IntegrationTest
     product = Product.find(products.first[:id])
     assert_equal @fossils.id, product.category.id
   end
-  
-  test "list rarest products" do
+
+  test 'list rarest products' do
     get '/api/products?rarity=1000'
-    
+
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
     assert_equal 1, json(response.body)[:products].size

@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class CreateProductTest < ActionDispatch::IntegrationTest
-  test "creates new product with valid data" do    
-    post "/api/products", { product: { 
+  test 'creates new product with valid data' do
+    post '/api/products', { product: {
       name: 'Something',
       description: 'A product!',
       shine: 100,
@@ -11,11 +11,9 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       color: '#FFF',
       faces: 13,
       category_id: 1
-    } }.to_json, {
-      'Accept' => 'application/json',
-      'Content-Type' => 'application/json'
-    }
-        
+    } }.to_json, 'Accept' => 'application/json',
+                 'Content-Type' => 'application/json'
+
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type
     product = json(response.body)[:product]
@@ -26,9 +24,9 @@ class CreateProductTest < ActionDispatch::IntegrationTest
     assert_equal '1234.23', product[:price]
     assert_equal 1, product[:category_id]
   end
-  
-  test "creates new product with invalid data" do    
-    post "/api/products", { product: { 
+
+  test 'creates new product with invalid data' do
+    post '/api/products', { product: {
       name: nil,
       description: 'A product!',
       shine: 100,
@@ -37,13 +35,10 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       color: '#FFF',
       faces: 13,
       category_id: 1
-    } }.to_json, {
-      'Accept' => 'application/json',
-      'Content-Type' => 'application/json'
-    }
-        
+    } }.to_json, 'Accept' => 'application/json',
+                 'Content-Type' => 'application/json'
+
     assert_equal 422, response.status
     assert_equal Mime::JSON, response.content_type
   end
-  
 end

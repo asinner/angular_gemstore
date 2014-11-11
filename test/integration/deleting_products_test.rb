@@ -12,10 +12,10 @@ class DeletingProductsTest < ActionDispatch::IntegrationTest
       faces:  14
     )
   end
-  
+
   test 'delete products' do
     delete "/api/products/#{@product.id}"
-    
+
     assert_equal 204, response.status
   end
 end
