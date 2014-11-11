@@ -5,8 +5,7 @@
 		$scope.review = {};
 		
 		$scope.addReview = function(product) {
-			console.log('here');
-			product.reviews.push('Andrew');
+			product.reviews.push($scope.review);
 			$scope.review = {};
 		};
 	}]);

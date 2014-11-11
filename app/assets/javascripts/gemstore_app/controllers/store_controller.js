@@ -7,5 +7,6 @@
 	  $http.get('products/gems.json').success(function(data) {
 	  	$scope.products = data;
 	  });
+	
 	}]);
 })()
