@@ -2,26 +2,27 @@ require 'test_helper'
 
 class CreateProductTest < ActionDispatch::IntegrationTest
   setup do
-    Product.create!(
+    @fossils = Category.create!(name: 'Fossils')
+    @stones = Category.create!(name: 'Stones')
+    
+    @fossils.products.create!(
       name: 'Halifax',
       description: 'A canadian gem',
       shine: 13,
       price: 1_344.00,
       rarity: 143,
       color: '#CCC',
-      faces:  14,
-      category_id: 1
+      faces:  14
     )
     
-    Product.create!(
+    @fossils.products.create!(
       name: 'Scotia',
       description: 'A scottish gem',
       shine: 23,
       price: 2_344.00,
       rarity: 1100,
       color: '#EEE',
-      faces:  7,
-      category_id: 1
+      faces:  7
     )
   end
   
@@ -29,7 +30,10 @@ class CreateProductTest < ActionDispatch::IntegrationTest
     get '/products'
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
-    assert_equal Product.count, json(response.body)[:products].size
+    products = json(response.body)[:products]
+    assert_equal Product.count, products.size
+    product = Product.find(products.first[:id])
+    assert_equal @fossils.id, product.category.id
   end
   
   test "list rarest products" do
