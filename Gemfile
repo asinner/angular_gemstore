@@ -11,3 +11,5 @@ gem 'spring', group: :development
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'rails_12factor', group: :production
+gem 'active_model_serializers'
+gem 'pry'

@@ -17,7 +17,7 @@ class CreateProductTest < ActionDispatch::IntegrationTest
         
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type
-    product = json(response.body)
+    product = json(response.body)[:product]
     assert_equal product_url(product[:id]), response.location
     assert_equal 'Something', product[:name]
     assert_equal 'A product!', product[:description]
