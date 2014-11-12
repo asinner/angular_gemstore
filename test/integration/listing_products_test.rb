@@ -29,7 +29,6 @@ class CreateProductTest < ActionDispatch::IntegrationTest
     assert_equal Mime::JSON, response.content_type
     products = json(response.body)[:products]
     assert_equal Product.count, products.size
-    product = Product.find(products.first[:id])
   end
 
   test 'list rarest products' do

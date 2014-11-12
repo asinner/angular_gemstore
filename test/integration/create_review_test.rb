@@ -12,17 +12,15 @@ class CreateReviewTest < ActionDispatch::IntegrationTest
       faces:  7
     )
   end
-  
-  test "create review with valid data" do
+
+  test 'create review with valid data' do
     post "/api/products/#{@product.id}/reviews", { review: {
       stars: 5,
       body: 'Lorem ipsum',
       author: 'andrew@example.com'
-    } }.to_json, {
-      'Accept' => 'application/json',
-      'Content-Type' => 'application/json'
-    }
-    
+    } }.to_json, 'Accept' => 'application/json',
+                 'Content-Type' => 'application/json'
+
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type
     review = json(response.body)[:review]
@@ -32,17 +30,15 @@ class CreateReviewTest < ActionDispatch::IntegrationTest
     assert_equal 'andrew@example.com', review[:author]
     assert @product.reviews.include?(Review.find(review[:id]))
   end
-  
-  test "create review with invalid data" do
+
+  test 'create review with invalid data' do
     post "/api/products/#{@product.id}/reviews", { review: {
       stars: 5,
       body: '',
       author: 'andrew@example.com'
-    } }.to_json, {
-      'Accept' => 'application/json',
-      'Content-Type' => 'application/json'
-    }
-    
+    } }.to_json, 'Accept' => 'application/json',
+                 'Content-Type' => 'application/json'
+
     assert_equal 422, response.status
     assert_equal Mime::JSON, response.content_type
   end
