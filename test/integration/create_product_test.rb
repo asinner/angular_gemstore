@@ -25,7 +25,7 @@ class CreateProductTest < ActionDispatch::IntegrationTest
     assert_equal 1, product[:category_id]
   end
 
-  test 'creates new product with invalid data' do
+  test 'does not create new product with invalid data' do
     post '/api/products', { product: {
       name: nil,
       description: 'A product!',

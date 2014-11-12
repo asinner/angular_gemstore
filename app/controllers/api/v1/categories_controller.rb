@@ -1,4 +1,4 @@
-module Api
+module Api::V1
   class CategoriesController < ApplicationController
     def index
       render json: Category.all, status: 200

@@ -1,4 +1,4 @@
-module Api
+module Api::V1
   class ProductsController < ApplicationController
     def index
       products = Product.all
@@ -12,6 +12,16 @@ module Api
 
       if product.save
         render json: product, status: 201, location: [:api, product]
+      else
+        render json: product.errors, status: 422
+      end
+    end
+
+    def update
+      product = Product.find(params[:id])
+
+      if product.update(product_params)
+        render json: product, status: 200, location: [:api, product]
       else
         render json: product.errors, status: 422
       end

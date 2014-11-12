@@ -54,5 +54,12 @@
       controllerAs: "gallery"
     };
   });
+
+	app.directive("productTitle", function() {
+		return {
+			restrict: "E",
+			templateUrl: "products/title.html"
+		};
+	});
   
 })();
