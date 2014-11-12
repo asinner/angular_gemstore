@@ -68,7 +68,42 @@
 				%product-title
 				%product-gallery
 				%product-tabs
+				
+				%a.btn.btn-warning{data: {ng_click: 'showEditProductForm = true', ng_hide: 'showEditProductForm'}} Edit
 				%a.btn.btn-danger{data: {ng_click: 'showDeleteConfirm = true', ng_hide: 'showDeleteConfirm'}} Delete
 				%a.btn.btn-danger{data: {ng_click: 'destroy()', ng_show: 'showDeleteConfirm'}} WARNING! Are you sure?
 				%a.btn.btn-default{data: {ng_click: 'showDeleteConfirm = false', ng_show: 'showDeleteConfirm'}} Cancel
 				
+				%form{name: 'editProductForm', novalidate: true, data: {ng_submit: 'editProductForm.$valid && update()', ng_show: 'showEditProductForm'}}
+					%div.form-group{data: {ng_class: "{'has-error': editProductForm.name.$dirty && editProductForm.name.$invalid}"}}
+						= label_tag 'name', 'Name', class: 'control-label'
+						= text_field_tag 'name', nil, class: 'form-control', data: {ng_model: 'product.name'}, required: true
+					
+					%div.form-group{data: {ng_class: "{'has-error': editProductForm.description.$dirty && editProductForm.description.$invalid}"}}
+						= label_tag 'description', 'Description', class: 'control-label'
+						= text_field_tag 'description', nil, class: 'form-control', data: {ng_model: 'product.description'}, required: true
+					
+					%div.form-group{data: {ng_class: "{'has-error': editProductForm.shine.$dirty && editProductForm.shine.$invalid}"}}
+						= label_tag 'shine', 'Shine', class: 'control-label'
+						= number_field_tag 'shine', nil, class: 'form-control', data: {ng_model: 'product.shine'}, required: true
+					
+					%div.form-group{data: {ng_class: "{'has-error': editProductForm.price.$dirty && editProductForm.price.$invalid}"}}
+						= label_tag 'price', 'Price', class: 'control-label'
+						= text_field_tag 'price', nil, class: 'form-control', data: {ng_model: 'product.price'}, required: true
+					
+					%div.form-group{data: {ng_class: "{'has-error': editProductForm.rarity.$dirty && editProductForm.rarity.$invalid}"}}
+						= label_tag 'rarity', 'Rarity', class: 'control-label'
+						= number_field_tag 'rarity', nil, class: 'form-control', data: {ng_model: 'product.rarity'}, required: true
+					
+					%div.form-group{data: {ng_class: "{'has-error': editProductForm.color.$dirty && editProductForm.color.$invalid}"}}
+						= label_tag 'color', 'Color', class: 'control-label'
+						= text_field_tag 'color', nil, class: 'form-control', data: {ng_model: 'product.color'}, required: true
+					
+					%div.form-group{data: {ng_class: "{'has-error': editProductForm.faces.$dirty && editProductForm.faces.$invalid}"}}
+						= label_tag 'faces', 'Faces', class: 'control-label'
+						= number_field_tag 'faces', nil, class: 'form-control', data: {ng_model: 'product.faces'}, required: true
+					
+					%button{type: 'submit', class: 'btn btn-primary', data: {ng_disabled: "editProductForm.$invalid"}}
+						Update Product
+					%button.btn.btn-default{type: 'button', data: {ng_click: 'showEditProductForm = false'}}
+						Cancel

@@ -19,6 +19,20 @@
 				});
 		};
 		
+		$scope.update = function() {
+			$http({
+				method: 'PATCH',
+				url: '/api/products/' + $scope.product.id,
+				data: $scope.product
+			})
+			.success(function(data, status) {
+				console.log([data, status]);
+			})
+			.error(function() {
+				console.log([data, status]);					
+			});
+		}
+		
 		$scope.destroy = function() {
 			$http.delete('/api/products/' + $scope.product.id)
 				.success(function(data, status) {
