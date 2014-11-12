@@ -6,6 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+Admin.create!(
+  email: 'andrew@example.com',
+  password: '12345678',
+  password_confirmation: '12345678'  
+)
+
 @azurite = Product.create!(
   name: "Azurite",
   description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
