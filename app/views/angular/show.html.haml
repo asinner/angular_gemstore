@@ -34,7 +34,7 @@
 					
 					%div.form-group{data: {ng_class: "{'has-error': newProductForm.color.$dirty && newProductForm.color.$invalid}"}}
 						= label_tag 'color', 'Color', class: 'control-label'
-						= color_field_tag 'color', nil, class: 'form-control', data: {ng_model: 'newProduct.color'}, required: true
+						= text_field_tag 'color', nil, class: 'form-control', data: {ng_model: 'newProduct.color'}, required: true
 					
 					%div.form-group{data: {ng_class: "{'has-error': newProductForm.faces.$dirty && newProductForm.faces.$invalid}"}}
 						= label_tag 'faces', 'Faces', class: 'control-label'
@@ -64,7 +64,11 @@
 	-# List products
 	.container-fluid
 		.list-group.row
-			.list-group-item.col-md-4.center-block{"ng-repeat" => "product in products"}
+			.list-group-item.col-md-12.center-block{"ng-repeat" => "product in products", data: {ng_controller: 'ProductCtrl'}}
 				%product-title
 				%product-gallery
 				%product-tabs
+				%a.btn.btn-danger{data: {ng_click: 'showDeleteConfirm = true', ng_hide: 'showDeleteConfirm'}} Delete
+				%a.btn.btn-danger{data: {ng_click: 'destroy()', ng_show: 'showDeleteConfirm'}} WARNING! Are you sure?
+				%a.btn.btn-default{data: {ng_click: 'showDeleteConfirm = false', ng_show: 'showDeleteConfirm'}} Cancel
+				

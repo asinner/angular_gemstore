@@ -19,6 +19,17 @@
 				});
 		};
 		
+		$scope.destroy = function() {
+			$http.delete('/api/products/' + $scope.product.id)
+				.success(function(data, status) {
+					$scope.products.splice($scope.products.indexOf($scope.product), 1);
+					console.log([data, status]);
+				})
+				.error(function(data, status) {
+					console.log([data, status]);
+				});
+		};
+		
 		
 		
 	}]);

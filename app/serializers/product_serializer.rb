@@ -3,5 +3,5 @@ class ProductSerializer < ActiveModel::Serializer
              :rarity, :price, :color, :faces, :category_id
              
   #embed :ids
-  has_many :images
+  has_many :images, :reviews
 end

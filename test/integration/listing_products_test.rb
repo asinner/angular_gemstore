@@ -2,10 +2,7 @@ require 'test_helper'
 
 class CreateProductTest < ActionDispatch::IntegrationTest
   setup do
-    @fossils = Category.create!(name: 'Fossils')
-    @stones = Category.create!(name: 'Stones')
-
-    @fossils.products.create!(
+    Product.create!(
       name: 'Halifax',
       description: 'A canadian gem',
       shine: 13,
@@ -15,7 +12,7 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       faces:  14
     )
 
-    @fossils.products.create!(
+    Product.create!(
       name: 'Scotia',
       description: 'A scottish gem',
       shine: 23,
@@ -33,7 +30,6 @@ class CreateProductTest < ActionDispatch::IntegrationTest
     products = json(response.body)[:products]
     assert_equal Product.count, products.size
     product = Product.find(products.first[:id])
-    assert_equal @fossils.id, product.category.id
   end
 
   test 'list rarest products' do
