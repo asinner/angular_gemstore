@@ -26,6 +26,7 @@
 				data: $scope.product
 			})
 			.success(function(data, status) {
+				$scope.showEditProductForm = false;
 				console.log([data, status]);
 			})
 			.error(function() {
