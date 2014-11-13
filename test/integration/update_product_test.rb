@@ -21,13 +21,13 @@ class UpdateProductTest < ActionDispatch::IntegrationTest
   end
 
   test 'updates product with valid data' do
-    patch "/api/products/#{@product.id}", { 
+    patch "/api/products/#{@product.id}", {
       product: {
         name: 'Andrew'
       },
       token: @admin.token
     }.to_json, 'Accept' => 'application/json',
-                 'Content-Type' => 'application/json'
+               'Content-Type' => 'application/json'
 
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
@@ -37,13 +37,13 @@ class UpdateProductTest < ActionDispatch::IntegrationTest
   end
 
   test 'does not update product with invalid data' do
-    patch "/api/products/#{@product.id}", { 
+    patch "/api/products/#{@product.id}", {
       product: {
         name: ''
       },
       token: @admin.token
     }.to_json, 'Accept' => 'application/json',
-                 'Content-Type' => 'application/json'
+               'Content-Type' => 'application/json'
 
     assert_equal 422, response.status
     assert_equal Mime::JSON, response.content_type

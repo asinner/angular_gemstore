@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   def verified_request?
     super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
   end
-  
+
   def authenticate_admin!
     return render json: { msg: 'You must be authenticated to perform that action' }, status: 403 unless Admin.find_by(token: params[:token])
   end

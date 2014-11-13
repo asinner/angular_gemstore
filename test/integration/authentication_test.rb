@@ -10,12 +10,12 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
   end
 
   test 'with valid credentials, admin should get token' do
-    
+
     post '/sign-in', {
       email: 'andrew@example.com',
       password: '12345678'
     }.to_json, 'Accept' => 'application/json',
-                 'Content-Type' => 'application/json'
+               'Content-Type' => 'application/json'
 
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type

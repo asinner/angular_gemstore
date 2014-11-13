@@ -20,9 +20,7 @@ class DeletingProductsTest < ActionDispatch::IntegrationTest
   end
 
   test 'delete products' do
-    delete "/api/products/#{@product.id}", {
-      token: @admin.token
-    }
+    delete "/api/products/#{@product.id}", token: @admin.token
 
     assert_equal 204, response.status
   end

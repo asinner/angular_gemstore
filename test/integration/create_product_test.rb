@@ -9,9 +9,9 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       token: SecureRandom.uuid
     )
   end
-  
+
   test 'creates new product with valid data' do
-    post '/api/products', { 
+    post '/api/products', {
       product: {
         name: 'Something',
         description: 'A product!',
@@ -24,7 +24,7 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       },
       token: @admin.token
     }.to_json, 'Accept' => 'application/json',
-                 'Content-Type' => 'application/json'
+               'Content-Type' => 'application/json'
 
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type
@@ -38,7 +38,7 @@ class CreateProductTest < ActionDispatch::IntegrationTest
   end
 
   test 'does not create new product with invalid data' do
-    post '/api/products', { 
+    post '/api/products', {
       product: {
         name: nil,
         description: 'A product!',
@@ -51,7 +51,7 @@ class CreateProductTest < ActionDispatch::IntegrationTest
       },
       token: @admin.token
     }.to_json, 'Accept' => 'application/json',
-                 'Content-Type' => 'application/json'
+               'Content-Type' => 'application/json'
 
     assert_equal 422, response.status
     assert_equal Mime::JSON, response.content_type

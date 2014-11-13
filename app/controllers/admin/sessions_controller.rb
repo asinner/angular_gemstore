@@ -1,7 +1,7 @@
 class Admin::SessionsController < ApplicationController
-  def create    
+  def create
     admin = Admin.find_by(email: params[:email])
-    
+
     if admin && admin.valid_password?(params[:password])
       admin.update(token: SecureRandom.uuid)
       render json: { token: admin.token, admin: admin }, status: 201
