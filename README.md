@@ -5,7 +5,17 @@ This application is a small store that lists descriptions, specs, and reviews fo
 [Production app can be found here](https://guarded-shelf-9201.herokuapp.com/)
 
 ### Authentication in Angular
-With help from [this article](https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec) authentication in Angular is pretty trvial.
+With help from [this article](https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec) authentication in Angular is viable task.
+
+##### The approach:
+1. Use Angular's $http post to send an email and password to your designated Rails controller
+2. Check to see if your user exists with the credentials
+3. If the user authenticates: 
+	- assign them a token in your database and pass it back to Angular
+	- in Angular, store that token in a Session service as well as $cookieStore
+	- in Angular, pass that token on every subsequent request that requires authentication
+	- in Rails, for every request that needs authentication, check the token
+	- in Rails, perform the action if the token exists, otherwise render a 403
 
 
 ### Implementation
