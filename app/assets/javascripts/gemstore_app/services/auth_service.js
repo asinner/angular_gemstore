@@ -20,13 +20,6 @@
 			);
 			
 			return deferred.promise;
-			//return $http.post('/sign-in', credentials).then(
-				
-					
-			//return $http.post('/admin/sign_in', credentials).then(function(response) {
-			//	Session.create(response.data.id, response.data.user.id, response.data.user.role);
-			//	return response.data.user;
-			//});
 		}
 		
 		authService.logout = function() {
@@ -36,8 +29,7 @@
 		}
 		
 		authService.loginFromCookieStore = function() {
-			var deferred = $q.defer();
-			
+			var deferred = $q.defer();			
 			var token = $cookieStore.get('token');
 			var admin = $cookieStore.get('admin');
 			if (token && admin) {

@@ -1,5 +1,7 @@
 module Api::V1
   class ProductsController < ApplicationController
+    before_action :authenticate_admin!, except: [:index]
+    
     def index
       products = Product.all
       products = products.where('rarity >= ?', params[:rarity]) if params[:rarity]

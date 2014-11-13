@@ -1,14 +1,17 @@
 (function() {
 	var app = angular.module('gemStore');
   
-	app.controller('ProductCtrl', ['$scope', '$http', function($scope, $http) {
+	app.controller('ProductCtrl', ['$scope', '$http', 'Session', function($scope, $http, Session) {
 		$scope.newProduct = {};
-		
+				
 		$scope.create = function() {
 			$http({
 				method: 'POST',
 				url: '/api/products',
-				data: $scope.newProduct
+				data: {
+					product: $scope.newProduct,
+					token: Session.token
+				}
 			})
 				.success(function(data, status) {
 					$scope.products.push($scope.newProduct);
@@ -23,11 +26,14 @@
 				});
 		};
 		
-		$scope.update = function() {			
+		$scope.update = function() {	
 			$http({
 				method: 'PATCH',
 				url: '/api/products/' + $scope.product.id,
-				data: $scope.product
+				data: { 
+					product: $scope.product,
+					token: Session.token
+				}
 			})
 			.success(function(data, status) {
 				$scope.showEditProductForm = false;
@@ -39,14 +45,22 @@
 		}
 		
 		$scope.destroy = function() {
-			$http.delete('/api/products/' + $scope.product.id)
-				.success(function(data, status) {
-					$scope.products.splice($scope.products.indexOf($scope.product), 1);
-					console.log([data, status]);
-				})
-				.error(function(data, status) {
-					console.log([data, status]);
-				});
+			$http({
+				method: 'DELETE',
+				url: '/api/products/' + $scope.product.id,
+				data: {
+					token: Session.token
+				},
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			.success(function(data, status) {
+				$scope.products.splice($scope.products.indexOf($scope.product), 1);				
+			})
+			.error(function(data, status) {
+				console.log([data, status]);
+			});
 		};
 	
 	}]);

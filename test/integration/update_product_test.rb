@@ -2,6 +2,13 @@ require 'test_helper'
 
 class UpdateProductTest < ActionDispatch::IntegrationTest
   setup do
+    @admin = Admin.create!(
+      email: 'andrew@example.com',
+      password: '12345678',
+      password_confirmation: '12345678',
+      token: SecureRandom.uuid
+    )
+
     @product = Product.create!(
       name: 'Scotia',
       description: 'A scottish gem',
@@ -14,9 +21,12 @@ class UpdateProductTest < ActionDispatch::IntegrationTest
   end
 
   test 'updates product with valid data' do
-    patch "/api/products/#{@product.id}", { product: {
-      name: 'Andrew'
-    } }.to_json, 'Accept' => 'application/json',
+    patch "/api/products/#{@product.id}", { 
+      product: {
+        name: 'Andrew'
+      },
+      token: @admin.token
+    }.to_json, 'Accept' => 'application/json',
                  'Content-Type' => 'application/json'
 
     assert_equal 200, response.status
@@ -27,9 +37,12 @@ class UpdateProductTest < ActionDispatch::IntegrationTest
   end
 
   test 'does not update product with invalid data' do
-    patch "/api/products/#{@product.id}", { product: {
-      name: ''
-    } }.to_json, 'Accept' => 'application/json',
+    patch "/api/products/#{@product.id}", { 
+      product: {
+        name: ''
+      },
+      token: @admin.token
+    }.to_json, 'Accept' => 'application/json',
                  'Content-Type' => 'application/json'
 
     assert_equal 422, response.status

@@ -5,7 +5,7 @@
 				%div{data: {ng_show: 'currentAdmin'}}
 					%a.btn.btn-default{data: {ng_click: 'showEditProductForm = true'}} Edit
 					%a.btn.btn-danger{data: {ng_click: 'showDeleteConfirm = true', ng_hide: 'showDeleteConfirm'}} Delete
-					%div{data: {ng_show: 'showDeleteConfirm'}}
+					%span{data: {ng_show: 'showDeleteConfirm'}}
 						%a.btn.btn-danger{data: {ng_click: 'destroy()'}} Are you sure?
 						%a.btn.btn-default{data: {ng_click: 'showDeleteConfirm = false'}} Cancel
 				%product-title

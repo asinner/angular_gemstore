@@ -10,6 +10,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
   end
 
   test 'with valid credentials, admin should get token' do
+    
     post '/sign-in', { admin: {
       email: 'andrew@example.com',
       password: '12345678'
