@@ -1,0 +1,33 @@
+.container-fluid
+	.row
+		.col-md-8.center-block.no-float
+			.row.product{data: {ng_repeat: 'product in products', ng_controller: 'ProductCtrl'}}
+				%div{data: {ng_show: 'currentAdmin'}}
+					%a.btn.btn-default{data: {ng_click: 'showEditProductForm = true'}} Edit
+					%a.btn.btn-danger{data: {ng_click: 'showDeleteConfirm = true', ng_hide: 'showDeleteConfirm'}} Delete
+					%div{data: {ng_show: 'showDeleteConfirm'}}
+						%a.btn.btn-danger{data: {ng_click: 'destroy()'}} Are you sure?
+						%a.btn.btn-default{data: {ng_click: 'showDeleteConfirm = false'}} Cancel
+				%product-title
+				%product-gallery
+				%product-tabs
+				%div.fluid-container{data: {ng_show: 'showEditProductForm'}}
+					.row
+						%form{name: 'productForm', novalidate: true, data: {ng_submit: 'update()'}}
+							.col-md-3
+								.form-group{data: {ng_class: "{'has-error': productForm.name.$invalid && productForm.name.$dirty}"}}
+									%input.form-control{name: 'name', required: true, placeholder: 'Name', type: 'text', data: {ng_model: 'product.name'}}
+								.form-group{data: {ng_class: "{'has-error': productForm.description.$invalid && productForm.description.$dirty}"}}	
+									%input.form-control{name: 'description', required: true, placeholder: 'Description', type: 'text', data: {ng_model: 'product.description'}}
+								.form-group{data: {ng_class: "{'has-error': productForm.shine.$invalid && productForm.shine.$dirty}"}}
+									%input.form-control{name: 'shine', required: true, placeholder: 'Shine', type: 'text', data: {ng_model: 'product.shine'}}
+								.form-group{data: {ng_class: "{'has-error': productForm.price.$invalid && productForm.price.$dirty}"}}
+									%input.form-control{name: 'price', required: true, placeholder: 'Price', type: 'text', data: {ng_model: 'product.price'}}
+							.col-md-3
+								.form-group{data: {ng_class: "{'has-error': productForm.rarity.$invalid && productForm.rarity.$dirty}"}}
+									%input.form-control{name: 'rarity', required: true, placeholder: 'Rarity', type: 'text', data: {ng_model: 'product.rarity'}}
+								.form-group{data: {ng_class: "{'has-error': productForm.color.$invalid && productForm.color.$dirty}"}}
+									%input.form-control{name: 'color', required: true, placeholder: 'Color', type: 'text', data: {ng_model: 'product.color'}}
+								.form-group{data: {ng_class: "{'has-error': productForm.faces.$invalid && productForm.faces.$dirty}"}}
+									%input.form-control{name: 'faces', required: true, placeholder: 'Faces', type: 'text', data: {ng_model: 'product.faces'}}
+								%button.btn.btn-primary{type: 'submit', data: {ng_disabled: "productForm.$invalid"}} Add product

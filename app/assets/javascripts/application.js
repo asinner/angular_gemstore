@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
+//= require angular-cookies/angular-cookies
+//= require angular-route/angular-route
 //= require gemstore

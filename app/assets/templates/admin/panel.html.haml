@@ -1,0 +1,11 @@
+.container-fluid
+	.row
+		.col-md-4.center-block.no-float
+			%h1.text-center
+				Sign in
+			%form{data: {ng_controller: 'LoginController', ng_submit: 'login(credentials)'}}
+				.control-group
+					%input.form-control.input-lg{type: 'text', placeholder: 'Email', data: {ng_model: 'credentials.email'}}
+				.control-group
+					%input.form-control.input-lg{type: 'password', placeholder: 'Password', data: {ng_model: 'credentials.password'}}
+				%button.btn.btn-primary Sign in

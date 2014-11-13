@@ -1,0 +1,13 @@
+.flash {
+	height: 50px;
+	padding: 0 15px;
+	line-height: 50px;
+}
+.flash.error {
+	background: #CC4B41;
+	color: #FFF;
+}
+.flash.success {
+	background: green;
+	color: #FFF;
+}

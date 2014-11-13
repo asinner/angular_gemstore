@@ -13,7 +13,7 @@
 			.error(function(data, status) {
 				console.log(status);
 				console.log(data);
-			})
+			});
 		
 	}]);
 })()

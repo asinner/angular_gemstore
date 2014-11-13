@@ -1,0 +1,13 @@
+(function() {
+	var app = angular.module('gemStore');
+	
+	app.config(['$routeProvider', function($routeProvider, AuthService) {
+		$routeProvider
+			.when('/admin', {
+				templateUrl: "<%= asset_path('admin/panel.html') %>"
+			})
+			.when('/', {
+				templateUrl: "<%= asset_path('products/index.html') %>"
+			});
+	}]);
+})()

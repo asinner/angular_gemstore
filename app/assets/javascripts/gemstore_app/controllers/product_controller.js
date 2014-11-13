@@ -5,7 +5,11 @@
 		$scope.newProduct = {};
 		
 		$scope.create = function() {
-			$http.post('/api/products', $scope.newProduct)
+			$http({
+				method: 'POST',
+				url: '/api/products',
+				data: $scope.newProduct
+			})
 				.success(function(data, status) {
 					$scope.products.push($scope.newProduct);
 					$scope.newProduct = {}
@@ -19,7 +23,7 @@
 				});
 		};
 		
-		$scope.update = function() {
+		$scope.update = function() {			
 			$http({
 				method: 'PATCH',
 				url: '/api/products/' + $scope.product.id,
@@ -44,8 +48,6 @@
 					console.log([data, status]);
 				});
 		};
-		
-		
-		
+	
 	}]);
 })()
