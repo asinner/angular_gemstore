@@ -4,6 +4,10 @@ This application is a small store that lists descriptions, specs, and reviews fo
 
 [Production app can be found here](https://guarded-shelf-9201.herokuapp.com/)
 
+### Authentication in Angular
+With help from [this article](https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec) authentication in Angular is pretty trvial.
+
+
 ### Implementation
 ------
 The first step in translating the Code School course into a Rails application was getting Angular required.

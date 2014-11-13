@@ -10,4 +10,13 @@
 				templateUrl: "<%= asset_path('products/index.html') %>"
 			});
 	}]);
+	
+	
+	app.run(function($rootScope) {
+		
+		$rootScope.$on('$routeChangeStart', function(event, next) {
+			console.log(next);
+		});
+		
+	});
 })()
